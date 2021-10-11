@@ -2,6 +2,7 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/And.hdl
+// Name: Alex Chidester
 
 /**
  * And gate:
@@ -17,4 +18,7 @@ CHIP And {
     Nand(a=a, b=b, out=nand);
     Not(in=nand, out=out);
     // Put your code here:
+
+
+
 }
