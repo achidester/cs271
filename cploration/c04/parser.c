@@ -3,23 +3,23 @@
 extern int MAX_LINE_NUMBER;
 
 void parse(FILE * file){
-  char line[200];
+  char line[200] = {0};
 
     while (fgets(line, sizeof(line), file)){
       strip(line);
-      if (line == NULL) continue;
-      printf("%s", line);
-
+      if (!*line) 
+          continue;
+      printf("%s\n", line);
     }
 }
 
-  char * strip(char *s){
+  char* strip(char* s){
 
-    char s_new[sizeof(s)+1];
+    char s_new[strlen(s) + 1];
     int i = 0;
 
     for (char *s2 = s; *s2; s2++) {
-      if(s2[0] == '/' && s2[1] == '/'){
+      if(*s2 == '/' && *(s2+1) == '/'){
         break;
       }
       else if (!isspace(*s2)){
