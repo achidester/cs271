@@ -60,10 +60,7 @@ void parse(FILE * file){
   }
 
   bool is_Ctype(const char *line){
-    if (is_Atype(line) == false && is_label(line) == false){
-      return true;
-    }
-    else return false;
+    return true;
   }
 
 
