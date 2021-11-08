@@ -61,6 +61,7 @@ void parse(FILE * file){
 
   bool is_Ctype(const char *line){
     return true;
+
   }
 
 
