@@ -7,7 +7,7 @@ void parse(FILE * file){
 
     while (fgets(line, sizeof(line), file)){
       strip(line);
-      if (!*line) 
+      if (!*line)
           continue;
 
       char inst_type = ' ';
@@ -16,6 +16,7 @@ void parse(FILE * file){
       }
       else if (is_label(line) == true){
         inst_type = 'L';
+        extract_label(line);
       }
       else if (is_Ctype(line) == true){
         inst_type = 'C';
@@ -57,6 +58,7 @@ void parse(FILE * file){
     if (line[0] == '(' && line[strlen(line) -1])
       return true;
     else return false;
+
   }
 
   bool is_Ctype(const char *line){
@@ -64,4 +66,7 @@ void parse(FILE * file){
 
   }
 
-
+  char *extract_label(const char *line, char* label){
+    strncpy(label, line +1, strlen(line - 2));
+    return label;
+  }
