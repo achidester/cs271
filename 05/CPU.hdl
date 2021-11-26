@@ -2,6 +2,7 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/05/CPU.hdl
+// Alex Chidester
 
 /**
  * The Hack CPU (Central Processing unit), consisting of an ALU,
@@ -39,5 +40,25 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
-}
+    // Put your code here: 
+
+    Mux16(a=instruction, b=outM, sel=instruction[15], out=mux1);
+    Not(in=instruction[15], out=notInst)
+    Or(a=instruction[5], b=notInst, out=regL)
+
+    ARegister(in=mux1, load=regL ,out=aReg);
+
+    Mux16(a=aReg, b=inM, sel=instruction[12] , out=mux2);
+
+    DRegister(in=outM, load=instruction[4], out=dReg);
+    
+    PC(in=aReg, load= , inc= , reset=reset, out=pc[0..13]);
+    ALU(x=dReg, y=mux2, zx=instruction[11], nx=instruction[10] , zy=instruction[9], ny=instruction[8], 
+f=instruction[7], no=instruction[6], out=outM, zr=zr, ng=ng);
+
+    // And16(a=aluOut, b=true, out=outM);
+
+    And16(a=aReg, b=true, out=addressM)
+
+
+} 
