@@ -47,7 +47,8 @@ void symtable_insert(char* key, hack_addr addr){
 
    struct Symbol *item = (struct Symbol*) malloc(sizeof(struct Symbol));
    item->address = addr;  
-   item->name = key;
+   item->name = (char*)malloc(strlen(key) + 1);
+   strcpy(item->name, key);
 
    //get the hash 
    int hashIndex = hash_table(key);

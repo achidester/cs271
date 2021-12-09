@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include "hack.h"
 
 void parse(FILE * file){
   char line[MAX_LINE_LENGTH] = {0};
@@ -12,6 +13,8 @@ void parse(FILE * file){
   unsigned int line_num = 0;
   unsigned int instr_num = 0;
 
+  add_predefined_symbols();
+  
   while (fgets(line, sizeof(line), file)){
     line_num += 1;
 
@@ -94,4 +97,12 @@ bool is_Ctype(const char *line){
 char *extract_label(const char *line, char* label){
   strncpy(label, line +1, strlen(line) - 2);
   return label;
+}
+
+void add_predefined_symbols(){
+  for(int i= 0, i < NUM_PREDEFINED_SYMBOLS); i++{
+    add_predefined_symbols symbol = add_predefined_symbols[i];
+    symtable_insert(symbol.name, symbol.address);
+  }
+
 }

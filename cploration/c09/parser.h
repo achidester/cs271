@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include "symtable.h"
 #include "parser.h"
+#include "hack.h"
 
 #define MAX_LINE_LENGTH 200
 #define MAX_LABEL_LENGTH MAX_LINE_LENGTH - 2
@@ -31,6 +32,8 @@ bool is_label(const char *line);
 bool is_Ctype(const char *line);
 
 char *extract_label(const char *line, char* label);
+
+void add_predefined_symbols();
 
 enum instruction_type{
   Invalid = -1,
