@@ -10,9 +10,9 @@
 #define SYMBOL_TABLE_SIZE 10000
 typedef int16_t hack_addr;
 
-typedef struct{
+typedef struct Symbol{
     hack_addr address;
-    char* name;
+    char *name;
 }Symbol;
 
 
