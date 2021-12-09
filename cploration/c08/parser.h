@@ -7,12 +7,13 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include "symtable.h"
 
 #define MAX_LINE_LENGTH 200
 #define MAX_LABEL_LENGTH = MAX_LINE_LENGTH - 2
 
-#define MAX_HACK_ADDRESS = INT16_MAX
-#define MAX_INSTRUCTIONS = MAX_HACK_ADDRESS
+#define MAX_HACK_ADDRESS INT16_MAX
+#define MAX_INSTRUCTIONS MAX_HACK_ADDRESS
 
 typedef int16_t hack_addr;
 typedef int16_t opcode;
@@ -31,21 +32,21 @@ bool is_Ctype(const char *line);
 char *extract_label(const char *line, char* label);
 
 enum instruction_type{
-  Invalid = -1;
-  Atype;
-  Ctype;
-}
+  Invalid = -1,
+  Atype,
+  Ctype
+};
 
 typedef struct c_instruction{
   opcode a:1;
   opcode comp:6;
   opcode dest:3;
   opcode jump:3;
-}
+};
 typedef struct a_instruction{
   union
   boolean 
-}
+};
 
 
 

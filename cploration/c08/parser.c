@@ -5,24 +5,47 @@ extern int MAX_LINE_NUMBER;
 void parse(FILE * file){
   char line[200] = {0};
 
+    unsigned int line_num = 0;
+    unsigned int instr_num = 0;
+
     while (fgets(line, sizeof(line), file)){
+
+      line_num += 1;
+
+      if (instr_num > MAX_INSTRUCTIONS) {
+        exit_program(EXIT_TOO_MANY_INSTRUCTIONS, MAX_INSTRUCTIONS + 1);
+      } 
+
       strip(line);
-      if (!*line)
-          continue;
+
+      if (!*line){
+        continue;
+      }
 
       char inst_type = ' ';
       if (is_Atype(line) == true){
         inst_type = 'A';
       }
       else if (is_label(line) == true){
+        if (isalpha(line[0])){
+          exit_program(EXIT_INVALID_LABEL, line_num, line);
+        }
+        else if (symtable_find(line) != NULL){
+          exit_program(EXIT_SYMBOL_ALREADY_EXISTS, line_num, line);
+        }
+        symtable_insert(line, instr_num);
+        continue;
+
         inst_type = 'L';
-        extract_label(line);
+        extract_label(line, new_label);
       }
       else if (is_Ctype(line) == true){
         inst_type = 'C';
       }
 
       printf("%c  %s\n", inst_type, line);
+
+      instr_num += 1;
     }
 }
 
