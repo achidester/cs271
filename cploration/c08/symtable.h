@@ -20,7 +20,7 @@ typedef struct{
 Symbol* hashArray[SYMBOL_TABLE_SIZE];
 int hash(char *str);
 struct Symbol *symtable_find(char * key);
-bool symtable_insert(char* key, hack_addr addr);
+void symtable_insert(char* key, hack_addr addr);
 void symtable_display_table();
 
 

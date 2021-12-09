@@ -12,8 +12,7 @@ unsigned long
         return hash_table ;
     }
 
-bool symtable_insert(value *v, hack_addr addr){
-
+void symtable_insert(value *v, hack_addr addr){
 
     if(v == NULL) return false; 
     int index = hash(v->name);

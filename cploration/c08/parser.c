@@ -1,4 +1,10 @@
 #include "parser.h"
+#include "error.h"
+#include "symtable.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
 extern int MAX_LINE_NUMBER;
 
@@ -9,7 +15,6 @@ void parse(FILE * file){
     unsigned int instr_num = 0;
 
     while (fgets(line, sizeof(line), file)){
-
       line_num += 1;
 
       if (instr_num > MAX_INSTRUCTIONS) {
@@ -37,7 +42,11 @@ void parse(FILE * file){
         continue;
 
         inst_type = 'L';
+        char new_label[MAX_LABEL_LENGTH];
         extract_label(line, new_label);
+        printf("%c  %s\n", inst_type, new_label);
+        continue;
+
       }
       else if (is_Ctype(line) == true){
         inst_type = 'C';
@@ -86,7 +95,6 @@ void parse(FILE * file){
 
   bool is_Ctype(const char *line){
     return true;
-
   }
 
   char *extract_label(const char *line, char* label){

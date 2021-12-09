@@ -8,9 +8,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "symtable.h"
+#include "parser.h"
 
 #define MAX_LINE_LENGTH 200
-#define MAX_LABEL_LENGTH = MAX_LINE_LENGTH - 2
+#define MAX_LABEL_LENGTH MAX_LINE_LENGTH - 2
 
 #define MAX_HACK_ADDRESS INT16_MAX
 #define MAX_INSTRUCTIONS MAX_HACK_ADDRESS
@@ -34,7 +35,7 @@ char *extract_label(const char *line, char* label);
 enum instruction_type{
   Invalid = -1,
   Atype,
-  Ctype
+  Ctype,
 };
 
 typedef struct c_instruction{
@@ -42,11 +43,15 @@ typedef struct c_instruction{
   opcode comp:6;
   opcode dest:3;
   opcode jump:3;
-};
+} c_instruction;
+
 typedef struct a_instruction{
-  union
-  boolean 
-};
+  union {
+    hack_addr address;
+    char * label;
+  };
+  bool is_addr;
+} a_instruction;
 
 
 

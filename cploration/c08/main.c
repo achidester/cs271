@@ -1,5 +1,7 @@
 #include "parser.h"
 #include "error.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, const char *argv[]){
 
@@ -7,14 +9,15 @@ int main(int argc, const char *argv[]){
       exit_program(EXIT_INCORRECT_ARGUMENTS, argv[0]);
   }
 
-  FILE *fin = fopen( argv[1], "r" );
+  FILE *fin = fopen(argv[1], "r");
 
   if(fin == NULL){
-      perror("Unable to open file!");
-      exit(EXIT_FAILURE);
+    exit_program(EXIT_CANNOT_OPEN_FILE, argv[1]);
   }
 
   parse(fin);
   fclose(fin);
+
+  return 0;
 
 }
