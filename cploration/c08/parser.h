@@ -53,6 +53,15 @@ typedef struct a_instruction{
   bool is_addr;
 } a_instruction;
 
+typedef struct instruction {
+  union {
+    a_instruction a_instr;
+    c_instruction c_instr;
+  };
+
+  bool instruction_type;
+} instruction;
+
 
 
 #endif

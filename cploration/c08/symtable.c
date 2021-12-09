@@ -1,18 +1,21 @@
 #include "symtable.h"
+#include <stdio.h>
 
-unsigned long
-    hash_table(char *str)
-    {
-        unsigned long hash = SYMBOL_TABLE_SIZE;
-        int value;
+struct Symbol* hashList[SYMBOL_TABLE_SIZE] = {NULL}
+struct Symbol* item;
 
-        while (value = *str++)
-            hash = ((hash << 5) + hash) + value; 
+unsigned long hash_table(char *key){
 
-        return hash_table ;
+    unsigned long hash = SYMBOL_TABLE_SIZE;
+    int value;
+
+    while (value = *str++)
+        hash = ((hash << 5) + hash) + value; 
+
+    return hash_table % SYMBOL_TABLE_SIZE;
     }
 
-void symtable_insert(value *v, hack_addr addr){
+void symtable_insert(char* key, hack_addr addr){
 
     if(v == NULL) return false; 
     int index = hash(v->name);
@@ -21,17 +24,24 @@ void symtable_insert(value *v, hack_addr addr){
 
 
 
-void hash_search(char* key){
-    int index = hash(key);
+void Symbol *symtable_find(char * key){
+    int index = hashList(key);
 
-    if (hash[index] != NULL) && (strncmp(hash_table[index]->name, name, SYMBOL_TABLE_SIZE)==0){
-            return hash_table[index];
+    while (hashList[index] != NULL){
+        if (strncmp(hash_table[index]->name, name, SYMBOL_TABLE_SIZE)==0){
+            return hashList[index];
         }
+
+        ++index
+        hashList %=SYMBOL_TABLE_SIZE;
+    }
+    return NULL;
 }
 
 void symtable_display_table(){
     printf("Start\n");
-    for (int=0; i < SYMBOL_TABLE_SIZE; i++){
+    
+    for (int i=0; i < SYMBOL_TABLE_SIZE; i++){
         if (hash_table[i]==NULL){
             printf("\t%i\t___\n", i);
         }
@@ -42,9 +52,8 @@ void symtable_display_table(){
                 printf ("%s - ", hash_table[tmp->value]);
                 tmp = tmp -> next;
             }
-            printf("\n");
         }
-    printf("END\n");
+    printf("\n");
     }
 }
 

@@ -6,10 +6,8 @@
 #include <ctype.h>
 #include <string.h>
 
-extern int MAX_LINE_NUMBER;
-
 void parse(FILE * file){
-  char line[200] = {0};
+  char line[MAX_LINE_LENGTH] = {0};
 
     unsigned int line_num = 0;
     unsigned int instr_num = 0;
@@ -30,12 +28,10 @@ void parse(FILE * file){
       char inst_type = ' ';
       if (is_Atype(line) == true){
         inst_type = 'A';
-      }
-      else if (is_label(line) == true){
+      } else if (is_label(line) == true){
         if (isalpha(line[0])){
           exit_program(EXIT_INVALID_LABEL, line_num, line);
-        }
-        else if (symtable_find(line) != NULL){
+      } else if (symtable_find(line) != NULL){
           exit_program(EXIT_SYMBOL_ALREADY_EXISTS, line_num, line);
         }
         symtable_insert(line, instr_num);
@@ -58,7 +54,7 @@ void parse(FILE * file){
     }
 }
 
-  char* strip(char* s){
+  char *strip(char *s){
 
     char s_new[strlen(s) + 1];
     int i = 0;
@@ -66,8 +62,7 @@ void parse(FILE * file){
     for (char *s2 = s; *s2; s2++) {
       if(*s2 == '/' && *(s2+1) == '/'){
         break;
-      }
-      else if (!isspace(*s2)){
+      } else if (!isspace(*s2)){
         s_new[i++] =*s2;
       }
     }     s_new[i] = '\0';
