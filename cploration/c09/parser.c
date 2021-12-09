@@ -14,7 +14,7 @@ void parse(FILE * file){
   unsigned int instr_num = 0;
 
   add_predefined_symbols();
-  
+
   while (fgets(line, sizeof(line), file)){
     line_num += 1;
 
@@ -103,6 +103,22 @@ void add_predefined_symbols(){
   for(int i= 0, i < NUM_PREDEFINED_SYMBOLS); i++{
     add_predefined_symbols symbol = add_predefined_symbols[i];
     symtable_insert(symbol.name, symbol.address);
+  }
+
+}
+
+bool parse_A_instruction(const char *line, a_instruction *instr){
+  char *s = (char*) malloc(strlen(line));
+  strcopy(s, line+1);
+  s_end = NULL;
+  long result = strtol(s, &s_end, 10);
+
+  if(s=s_end){
+
+  }else if(*s_end != 0){
+    return false
+  }else{
+    
   }
 
 }

@@ -33,6 +33,8 @@ bool is_Ctype(const char *line);
 
 char *extract_label(const char *line, char* label);
 
+bool parse_A_instruction(const char *line, a_instruction *instr);
+
 void add_predefined_symbols();
 
 enum instruction_type{
