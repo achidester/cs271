@@ -1,39 +1,52 @@
 #include "symtable.h"
 #include <stdio.h>
 
-struct Symbol* hashList[SYMBOL_TABLE_SIZE] = {NULL}
+struct Symbol* hashArray[SYMBOL_TABLE_SIZE] = {NULL};
 struct Symbol* item;
 
-unsigned long hash_table(char *key){
+unsigned int hash_table(char * key){
 
-    unsigned long hash = SYMBOL_TABLE_SIZE;
+    unsigned int hash = SYMBOL_TABLE_SIZE;
     int value;
 
-    while (value = *str++)
+    while ((value = *key++)){
         hash = ((hash << 5) + hash) + value; 
 
-    return hash_table % SYMBOL_TABLE_SIZE;
+    return hash % SYMBOL_TABLE_SIZE;
     }
 
 void symtable_insert(char* key, hack_addr addr){
 
-    if(v == NULL) return false; 
-    int index = hash(v->name);
-    if(hash_table[index] = v) return true;
+    struct Symbol *item = (struct DataItem*) malloc(sizeof(struct DataItem));
+   item->data = data;  
+   item->key = key;
+
+   //get the hash 
+   int hashIndex = hashCode(key);
+
+   //move in array until an empty or deleted cell
+   while(hashArray[hashIndex] != NULL && hashArray[hashIndex]->key != -1) {
+      //go to next cell
+      ++hashIndex;
+		
+      //wrap around the table
+      hashIndex %= SIZE;
+   }
+	
+   hashArray[hashIndex] = item;
 }
 
 
+struct Symbol *symtable_find(char * key){
+    int index = hashArray(key);
 
-void Symbol *symtable_find(char * key){
-    int index = hashList(key);
-
-    while (hashList[index] != NULL){
+    while (hashArray[index] != NULL){
         if (strncmp(hash_table[index]->name, name, SYMBOL_TABLE_SIZE)==0){
-            return hashList[index];
+            return hashArray[index];
         }
 
         ++index
-        hashList %=SYMBOL_TABLE_SIZE;
+        hashArray %=SYMBOL_TABLE_SIZE;
     }
     return NULL;
 }
