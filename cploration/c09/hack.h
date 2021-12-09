@@ -3,7 +3,7 @@
 
 #define NUM_PREDEFINED_SYMBOLS 23
 
-enum symbol_id{
+typedef enum symbol_id{
   SYM_R0 = 0,
   SYM_R1 = 1,
   SYM_R2 = 2,
@@ -27,13 +27,13 @@ enum symbol_id{
   SYM_THAT = 4,
   SYM_SCREEN = 16384,
   SYM_KBD = 24576,
-};
+}symbol_id;
 
 typedef struct predefined_symbol{
-    char name[6]
-    int16_t:"address";
+    char name[15];
+    int16_t address;
 
-};
+}predefined_symbol;
 
 
 static const predefined_symbol predefined_symbols[NUM_PREDEFINED_SYMBOLS] = {
