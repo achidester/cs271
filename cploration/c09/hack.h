@@ -29,4 +29,29 @@ enum symbol_id{
   SYM_KBD = 24576,
 };
 
-struct 
+typedef struct predefined_symbol{
+    char name[6]
+    int16_t:"address";
+
+};
+
+
+static const predefined_symbol predefined_symbols[NUM_PREDEFINED_SYMBOLS] = {
+    {"R0", SYM_R0}, 
+    {"R1", SYM_R1}, 
+    {"R2", SYM_R0}, 
+    {"R3", SYM_R1},
+    {"R4", SYM_R0}, 
+    {"R5", SYM_R1},
+    {"R6", SYM_R0}, 
+    {"R7", SYM_R1},
+    {"R8", SYM_R0}, 
+    {"R9", SYM_R1},
+    {"R10", SYM_R0}, 
+    {"R11", SYM_R1},
+    {"R12", SYM_R0}, 
+    {"R13", SYM_R1},
+    {"R14", SYM_R0}, 
+    {"R15", SYM_R1},
+
+};
