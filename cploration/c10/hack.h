@@ -29,6 +29,21 @@ typedef enum {
   SYM_KBD = 24576,
 }symbol_id;
 
+typedef enum{
+  JMP_INVALID = -1,
+  JMP_NULL,
+  JGT,
+  JEQ,
+  JGE,
+  JLT,
+  JNE,
+  JLE,
+  JMP,
+
+}jump_id;
+
+
+
 typedef struct {
     char name[15];
     int16_t address;
