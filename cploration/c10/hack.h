@@ -143,7 +143,7 @@ static inline jump_id str_to_jumpid(const char *s){
 }
 
 static inline dest_id str_to_destid(const char *s){
-  dest_id id = DEST_INVALID
+  dest_id id = DEST_INVALID;
 
   if (s == NULL) {
     id = DEST_NULL;
@@ -164,3 +164,110 @@ static inline dest_id str_to_destid(const char *s){
   }
   return id;
 }
+
+static inline comp_id str_to_compid(const char *s, int *a){
+  comp_id id = COMP_INVALID;
+  //Checking a value on the outer, so I dont have to repeat it over and over
+  if (a==0) { 
+    if (strcmp(s, COMP_0) == 0){
+      id = COMP_0;
+    } else if (strcmp(s, COMP_1) == 0){
+      id = COMP_1;
+    } else if (strcmp(s, COMP_neg1) == 0){
+      id = COMP_neg1;
+    } else if (strcmp(s, COMP_D) == 0){
+      id = COMP_D;
+    } else if (strcmp(s, COMP_A) == 0){
+      id = COMP_A;
+    } else if (strcmp(s, COMP_notD) == 0){
+      id = COMP_notD;
+    } else if (strcmp(s, COMP_notA) == 0){
+      id = COMP_notA;
+    } else if (strcmp(s, COMP_negD) == 0){
+      id = COMP_negD;
+    } else if (strcmp(s, COMP_negA) == 0){
+      id = COMP_negA;
+    } else if (strcmp(s, COMP_Dplus1) == 0){
+      id = COMP_Dplus1;
+    } else if (strcmp(s, COMP_Aplus1) == 0){
+      id = COMP_Aplus1;
+    } else if (strcmp(s, COMP_Dminus1) == 0){
+      id = COMP_Dminus1;
+    } else if (strcmp(s, COMP_Aminus1) == 0){
+      id = COMP_Aminus1;
+    } else if (strcmp(s, COMP_DplusA) == 0){
+      id = COMP_DplusA;
+    } else if (strcmp(s, COMP_DminusA) == 0){
+      id = COMP_DminusA;
+    } else if (strcmp(s, COMP_AminusD) == 0){
+      id = COMP_AminusD;
+    } else if (strcmp(s, COMP_DandA) == 0){
+      id = COMP_DandA;
+    } else if (strcmp(s, COMP_DminusA) == 0){
+      id = COMP_DminusA;
+    } else if (strcmp(s, COMP_DorA) == 0){
+      id = COMP_DorA;
+    } 
+    *a=0;
+  }
+  else if(a==1){
+    if (strcmp(s, COMP_M) == 0){
+      id = COMP_M;
+    } else if (strcmp(s, COMP_notM) == 0){
+      id = COMP_notM;
+    } else if (strcmp(s, COMP_negM) == 0){
+      id = COMP_negM;
+    } else if (strcmp(s, COMP_Mplus1) == 0){
+      id = COMP_Mplus1;
+    } else if (strcmp(s, COMP_Mminus1) == 0){
+      id = COMP_Mminus1;
+    } else if (strcmp(s, COMP_DplusM) == 0){
+      id = COMP_DplusM;
+    } else if (strcmp(s, COMP_DminusM) == 0){
+      id = COMP_DminusM;
+    } else if (strcmp(s, COMP_MinusD) == 0){
+      id = COMP_MinusD;
+    } else if (strcmp(s, COMP_DandM) == 0){
+      id = COMP_DandM;
+    } else if (strcmp(s, COMP_DorM) == 0){
+      id = COMP_DorM;
+    }
+    *a=1;
+  }
+  return id;
+}
+
+
+
+}
+COMP_INVALID = -1,
+  //a=0
+  COMP_0 = 42,
+  COMP_1 = 63,
+  COMP_neg1 = 58,
+  COMP_D = 24,
+  COMP_A = 48,
+  COMP_notD = 13,
+  COMP_notA = 51,
+  COMP_negD = 15,
+  COMP_negA = 49,
+  COMP_Dplus1 = 31,
+  COMP_Aplus1 = 55,
+  COMP_Dminus1 = 14,
+  COMP_Aminus1 = 50,
+  COMP_DplusA = 2,
+  COMP_DminusA = 19,
+  COMP_AminusD = 7,
+  COMP_DandA = 0,
+  COMP_DorA = 21,
+  //a=1
+  COMP_M = 48,
+  COMP_notM = 51,
+  COMP_negM = 49,
+  COMP_Mplus1 = 55,
+  COMP_Mminus1 = 50,
+  COMP_DplusM = 2,
+  COMP_DminusM = 19,
+  COMP_MinusD = 7,
+  COMP_DandM = 0,
+  COMP_DorM = 21,
