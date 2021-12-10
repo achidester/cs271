@@ -73,10 +73,16 @@ typedef enum{
   COMP_AminusD = 7,
   COMP_DandA = 0,
   COMP_DorA = 21,
-  
-
-
-
+  COMP_M = 48,
+  COMP_notM = 51,
+  COMP_negM = 49,
+  COMP_Mplus1 = 55,
+  COMP_Mminus1 = 50,
+  COMP_DplusM = 2,
+  COMP_DminusM = 19,
+  COMP_MinusD = 7,
+  COMP_DandM = 0,
+  COMP_DorM = 21,
 }comp_id;
 
 typedef struct {
