@@ -39,10 +39,45 @@ typedef enum{
   JNE,
   JLE,
   JMP,
-
 }jump_id;
 
+typedef enum{
+  DEST_INVALID = -1,
+  DEST_NULL,
+  M,
+  D,
+  MD,
+  A,
+  AM,
+  AD,
+  AMD,
+}dest_id;
 
+typedef enum{
+  COMP_INVALID = -1,
+  COMP_0 = 42,
+  COMP_1 = 63,
+  COMP_neg1 = 58,
+  COMP_D = 24,
+  COMP_A = 48,
+  COMP_notD = 13,
+  COMP_notA = 51,
+  COMP_negD = 15,
+  COMP_negA = 49,
+  COMP_Dplus1 = 31,
+  COMP_Aplus1 = 55,
+  COMP_Dminus1 = 14,
+  COMP_Aminus1 = 50,
+  COMP_DplusA = 2,
+  COMP_DminusA = 19,
+  COMP_AminusD = 7,
+  COMP_DandA = 0,
+  COMP_DorA = 21,
+  
+
+
+
+}comp_id;
 
 typedef struct {
     char name[15];
