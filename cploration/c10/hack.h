@@ -3,7 +3,7 @@
 
 #define NUM_PREDEFINED_SYMBOLS 23
 
-typedef enum {
+typedef enum symbol_id{
   SYM_R0 = 0,
   SYM_R1 = 1,
   SYM_R2 = 2,
@@ -29,7 +29,7 @@ typedef enum {
   SYM_KBD = 24576,
 }symbol_id;
 
-typedef enum{
+typedef enum jump_id{
   JMP_INVALID = -1,
   JMP_NULL,
   JGT,
@@ -41,7 +41,7 @@ typedef enum{
   JMP,
 }jump_id;
 
-typedef enum{
+typedef enum dest_id{
   DEST_INVALID = -1,
   DEST_NULL,
   M,
@@ -53,7 +53,7 @@ typedef enum{
   AMD,
 }dest_id;
 
-typedef enum{
+typedef enum comp_id{
   COMP_INVALID = -1,
   COMP_0 = 42,
   COMP_1 = 63,
@@ -85,7 +85,7 @@ typedef enum{
   COMP_DorM = 21,
 }comp_id;
 
-typedef struct {
+typedef struct predefined_symbol{
     char name[15];
     int16_t address;
 
@@ -117,3 +117,27 @@ static const predefined_symbol predefined_symbols[NUM_PREDEFINED_SYMBOLS] = {
     {"SYM_SCREEN", SYM_SCREEN}, 
     {"SYM_KBD", SYM_KBD}
 };
+
+
+static inline jump_id str_to_jumpid(const char *s){
+  jump_id id = JMP_INVALID;
+
+  if (s == NULL) {
+    id = JMP_NULL;
+  } else if (strcmp(s, JGT) == 0){
+    id = JGT ;
+  } else if (strcmp(s, JEQ) == 0){
+    id = JEQ;
+  } else if (strcmp(s, JGE) == 0){
+    id = JGE;
+  } else if (strcmp(s, JLT) == 0){
+    id = JLT;
+  } else if (strcmp(s, JNE) == 0){
+    id = JNE;
+  } else if (strcmp(s, JLE) == 0){
+    id = JLE;
+  } else if (strcmp(s, JMP) == 0){
+    id = JMP;
+  }
+  return id;
+}
